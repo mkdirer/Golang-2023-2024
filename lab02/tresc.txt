@@ -1,0 +1,14 @@
+1
+Na podstawie slice'ów z zadania z poprzedniego tygodnia proszę utworzyć mapę, w której kluczami są wartości całkowite (długość ciągu znaków) a wartościami slice stringów o określonej długości.
+Mapę proszę wypisać iteracyjnie, dwukrotnie
+2
+Proszę utworzyć dwuwymiarowy nieregularny slice losowych wartości całkowitych z zakresu [0,5] i wypisać go wierszami na ekran.
+Proszę utworzyć zbiór (mapa z wartościami logicznymi) zawierający wartości występujące we wszystkich wierszach, proszę wykorzystać instrukcję goto. Przy wypisywaniu zbioru proszę wykorzystać 'comma ok idiom'
+3
+Proszę zaimplementować funkcję wstawiającą wartość do tablicy zachowując porządek sortowania. Funkcja powinna zwracać slice oraz error (różny od nil w przypadku przekroczenia zakresu)
+4
+Proszę zdefiniować dekoratory:
+dodający do stringa prefix
+dodający do stringa suffix
+agregujący dowolną liczbę dekoratorów
+Proszę przetestować ich działanie.

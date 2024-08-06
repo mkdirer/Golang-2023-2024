@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>lab8: Go Coverage Report</title>
+		<style>
+			body {
+				background: black;
+				color: rgb(80, 80, 80);
+			}
+			body, pre, #legend span {
+				font-family: Menlo, monospace;
+				font-weight: bold;
+			}
+			#topbar {
+				background: black;
+				position: fixed;
+				top: 0; left: 0; right: 0;
+				height: 42px;
+				border-bottom: 1px solid rgb(80, 80, 80);
+			}
+			#content {
+				margin-top: 50px;
+			}
+			#nav, #legend {
+				float: left;
+				margin-left: 10px;
+			}
+			#legend {
+				margin-top: 12px;
+			}
+			#nav {
+				margin-top: 10px;
+			}
+			#legend span {
+				margin: 0 5px;
+			}
+			.cov0 { color: rgb(192, 0, 0) }
+.cov1 { color: rgb(128, 128, 128) }
+.cov2 { color: rgb(116, 140, 131) }
+.cov3 { color: rgb(104, 152, 134) }
+.cov4 { color: rgb(92, 164, 137) }
+.cov5 { color: rgb(80, 176, 140) }
+.cov6 { color: rgb(68, 188, 143) }
+.cov7 { color: rgb(56, 200, 146) }
+.cov8 { color: rgb(44, 212, 149) }
+.cov9 { color: rgb(32, 224, 152) }
+.cov10 { color: rgb(20, 236, 155) }
+
+		</style>
+	</head>
+	<body>
+		<div id="topbar">
+			<div id="nav">
+				<select id="files">
+				
+				<option value="file0">/home/stud2018/8kubiszyn/Desktop/GO/lab8/functions.go (95.0%)</option>
+				
+				</select>
+			</div>
+			<div id="legend">
+				<span>not tracked</span>
+			
+				<span class="cov0">not covered</span>
+				<span class="cov8">covered</span>
+			
+			</div>
+		</div>
+		<div id="content">
+		
+		<pre class="file" id="file0" style="display: none">package main 
+
+import (
+        "errors"
+        "sort"
+        "strings"
+)
+
+func split(text string, s ...string) ([]string, error) <span class="cov8" title="1">{
+        sep := " "
+        if len(s) == 1 </span><span class="cov8" title="1">{
+                sep = s[0]
+        }</span> else<span class="cov8" title="1"> if len(s) &gt; 1 </span><span class="cov8" title="1">{
+                return nil, errors.New("Too many arguments")
+        }</span>
+
+        <span class="cov8" title="1">splited := strings.Split(text, sep)
+        return splited, nil</span>
+}
+
+func splitAndSort(text string, s ...string) ([]string, error) <span class="cov8" title="1">{
+        sep := " "
+        if len(s) == 1 </span><span class="cov0" title="0">{
+                sep = s[0]
+        }</span> else<span class="cov8" title="1"> if len(s) &gt; 1 </span><span class="cov0" title="0">{
+                return nil, errors.New("Too many arguments")
+        }</span>
+
+        <span class="cov8" title="1">splited := strings.Split(text, sep)
+        sort.Strings(splited)
+
+        return splited, nil</span>
+}
+
+func getNumberOfNonEmptyLines(text string) int <span class="cov8" title="1">{
+        lines := strings.Split(text, "\n")
+        numOfNonEmptyLines := 0
+        for _, line := range lines </span><span class="cov8" title="1">{
+                if line != "" </span><span class="cov8" title="1">{
+                        numOfNonEmptyLines++
+                }</span>
+        }
+        <span class="cov8" title="1">return numOfNonEmptyLines</span>
+}
+
+func getNumOfWords(text string) int <span class="cov8" title="1">{
+        return len(strings.Split(text, " "))
+}</span>
+
+func getNumOfNonWhiteChars(text string) int <span class="cov8" title="1">{
+        return len(text) - strings.Count(text, " ") - strings.Count(text, "\t") -
+                strings.Count(text, "\n")
+}</span>
+
+func getFrequencyForWords(text string) map[string] int <span class="cov8" title="1">{
+        mapWordsFrequency := make(map[string] int)
+        words := strings.Split(text, " ")
+        for _, word := range words </span><span class="cov8" title="1">{
+                mapWordsFrequency[word]++
+        }</span>
+        <span class="cov8" title="1">return mapWordsFrequency</span>
+}
+
+func getSortedPalindroms(text string) []string <span class="cov8" title="1">{
+        words := strings.Split(text, " ")
+        palindroms := make([]string, 0)
+        for _, word := range words </span><span class="cov8" title="1">{
+                palindrom := true
+                for i := 0; i &lt; len(word) / 2; i++ </span><span class="cov8" title="1">{
+                        if word[i] != word[len(word) - 1 - i] </span><span class="cov8" title="1">{
+                                palindrom = false
+                                break</span>
+                        }
+                }
+                <span class="cov8" title="1">if palindrom </span><span class="cov8" title="1">{
+                        palindroms = append(palindroms, word)
+                }</span>
+        }
+        <span class="cov8" title="1">sort.Strings(palindroms)
+        return palindroms</span>
+}</pre>
+		
+		</div>
+	</body>
+	<script>
+	(function() {
+		var files = document.getElementById('files');
+		var visible;
+		files.addEventListener('change', onChange, false);
+		function select(part) {
+			if (visible)
+				visible.style.display = 'none';
+			visible = document.getElementById(part);
+			if (!visible)
+				return;
+			files.value = part;
+			visible.style.display = 'block';
+			location.hash = part;
+		}
+		function onChange() {
+			select(files.value);
+			window.scrollTo(0, 0);
+		}
+		if (location.hash != "") {
+			select(location.hash.substr(1));
+		}
+		if (!visible) {
+			select("file0");
+		}
+	})();
+	</script>
+</html>
